@@ -2,7 +2,7 @@ import os
 
 class Config:
   __conf = {
-    "save_media_to": os.path.dirname(os.path.realpath(__file__)) + os.path.sep + os.environ.get('SAVE_MEDIA_TO'),
+    "save_media_to": os.environ.get('SAVE_MEDIA_TO'),
     "tfa_type": "PUSH",
     "tfa_source": "push",
     "tfa_retries": 10,
