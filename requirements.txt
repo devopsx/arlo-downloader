@@ -1,1 +1,8 @@
+requests
+click
+pycryptodome
+unidecode
+cloudscraper>=1.2.71
+paho-mqtt
+cryptography
 pyaarlo==0.8.0.3
