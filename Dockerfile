@@ -4,7 +4,7 @@ FROM python:3.9
 RUN mkdir /arlo-downloader /records
 
 # Add user
-RUN useradd arlo-downloader
+RUN useradd -u 99 -g 100 arlo-downloader
 
 # Switch to arlo-downloader directory
 WORKDIR /arlo-downloader
@@ -17,7 +17,8 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 # Setting permissions
 RUN chmod +x entrypoint.sh
 
-# Setting our entrypoint
+# Setting our entrypoint and user
+USER arlo-downloader
 ENTRYPOINT ["/arlo-downloader/entrypoint.sh"]
 
 # Start the arlo-downloader.py script
