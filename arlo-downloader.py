@@ -74,6 +74,7 @@ def Init():
     # set these from the environment to log in
     USERNAME = os.environ.get('ARLO_USERNAME', '_INVALID')
     PASSWORD = os.environ.get('ARLO_PASSWORD', '_INVALID')
+    PATH = os.environ.get('SAVE_MEDIA_TO')
     
     # Print configuration in DEBUG
     for confItem in Config.dump_config().items(): logging.debug(confItem)
@@ -94,7 +95,7 @@ def Init():
                         storage_dir='aarlo',
                         verbose_debug=True,
                         backend='sse',
-                        save_media_to=Config.config("save_media_to"))
+                        save_media_to=PATH)
     if not arlo.is_connected:
         logging.info("failed to login({})".format(arlo._last_error))
         sys.exit(-1)
