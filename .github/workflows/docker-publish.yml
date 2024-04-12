@@ -32,7 +32,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: name/app
+          images: evilalmus/arlo-downloader
 
       - name: Build and push
         uses: docker/build-push-action@v5
