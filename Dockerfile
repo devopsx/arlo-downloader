@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.9
 
 # Create the working directories
 RUN mkdir /arlo-downloader /records
