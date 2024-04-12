@@ -94,7 +94,7 @@ def Init():
                         storage_dir='aarlo',
                         verbose_debug=True,
                         backend='sse',
-                        save_media_to=Config.config("save_media_to")
+                        save_media_to=Config.config("save_media_to"))
     if not arlo.is_connected:
         logging.info("failed to login({})".format(arlo._last_error))
         sys.exit(-1)
