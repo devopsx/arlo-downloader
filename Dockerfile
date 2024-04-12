@@ -14,6 +14,9 @@ COPY requirements.txt arlo-downloader.py config.py entrypoint.sh .
 # Update PIP to latest version and install required package(s)
 RUN pip install --upgrade pip && pip install -r requirements.txt
 
+# Setting permissions
+RUN chmod +x entrypoint.sh
+
 # Setting our entrypoint
 ENTRYPOINT ["/arlo-downloader/entrypoint.sh"]
 
