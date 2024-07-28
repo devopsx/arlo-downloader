@@ -1,0 +1,13 @@
+.env
+.github
+.venv
+
+__pycache__/
+
+Dockerfile
+LICENSE
+README.MD
+SECURITY.md
+
+compose.yml
+records/
