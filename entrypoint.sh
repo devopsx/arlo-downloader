@@ -9,8 +9,7 @@ groupmod -g $GID arlo-downloader
 
 chown -R "$UID:$GID" /records /arlo-downloader/aarlo
 
-# runuser -u arlo-downloader -- python /arlo-downloader/arlo-downloader.py \
-python /arlo-downloader/arlo-downloader.py \
+runuser -u arlo-downloader -- python /arlo-downloader/arlo-downloader.py \
     --save-media-to "${SAVE_MEDIA_TO}" \
     --tfa-type "${TFA_TYPE}" \
     --tfa-source "${TFA_SOURCE}" \
