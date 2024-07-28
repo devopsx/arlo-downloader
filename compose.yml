@@ -1,0 +1,19 @@
+services:
+  arlo-downloader:
+    image: arlo:latest
+    volumes:
+      - ./records:/records
+    environment:
+      ARLO_USERNAME: "${ARLO_USERNAME}"
+      ARLO_PASSWORD: "${ARLO_PASSWORD}"
+      TFA_TYPE: "${TFA_TYPE:-PUSH}"
+      TFA_SOURCE: "${TFA_SOURCE:-push}"
+      TFA_RETRIES: "${TFA_RETRIES:-10}"
+      TFA_DELAY: "${TFA_DELAY:-5}"
+      TFA_HOST: "${TFA_HOST:-_invalid}"
+      TFA_USERNAME: "${TFA_USERNAME:-_invalid}"
+      TFA_PASSWORD: "${TFA_PASSWORD:-_invalid}"
+      DEBUG: "${DEBUG:-0}"
+      SAVE_MEDIA_TO: "${SAVE_MEDIA_TO:-/records/$${Y}/$${m}/$${F}T$${t}_$${N}_$${SN}}"
+      UID: "${UID:-99}"
+      GID: "${GID:-100}"
