@@ -100,7 +100,11 @@ def Init(debug: int):
 
     # Print configuration in DEBUG
     for confItem in Config.dump_config().items():
-        logging.debug(confItem)
+        # Only pring password on highest debug level
+        if (confItem[0] == "tfa_password") and debug < 3:
+            logging.debug(("tfa_password", "***"))
+        else:
+            logging.debug(confItem)
     # log in
     # add `verbose_debug=True` to enable even more debugging
     # add `dump=True` to enable event stream packet dumps
