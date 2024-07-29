@@ -1,14 +1,13 @@
 services:
   arlo-downloader:
-    image: arlo:latest
+    image: "${IMAGE_VERSION:-arlo-downloader:latest}"
     volumes:
       - ./records:/records
     environment:
       ARLO_USERNAME: "${ARLO_USERNAME}"
       ARLO_PASSWORD: "${ARLO_PASSWORD}"
-      TFA_TYPE: "${TFA_TYPE:-PUSH}"
-      TFA_SOURCE: "${TFA_SOURCE:-push}"
+      TFA_TYPE: "${TFA_TYPE:-EMAIL}"
+      TFA_SOURCE: "${TFA_SOURCE:-imap}"
       TFA_HOST: "${TFA_HOST:-_invalid}"
       TFA_USERNAME: "${TFA_USERNAME:-_invalid}"
       TFA_PASSWORD: "${TFA_PASSWORD:-_invalid}"
-      SAVE_MEDIA_TO: "${SAVE_MEDIA_TO:-/records/$${Y}/$${m}/$${F}T$${t}_$${N}_$${SN}}"
