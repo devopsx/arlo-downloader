@@ -1,8 +1,5 @@
 # Arlo-Downloader
 
-[![](https://img.shields.io/docker/image-size/diaznet/arlo-downloader/latest)](https://hub.docker.com/r/diaznet/arlo-downloader)
-[![](https://img.shields.io/docker/pulls/diaznet/arlo-downloader?color=%23099cec)](https://hub.docker.com/r/diaznet/arlo-downloader)
-
 Automatically download your videos from Arlo for long-term storage.
 
 # Introduction
@@ -50,16 +47,17 @@ This way your main account is not used by Arlo Downloader and access can be revo
 
 #### Optional
 
-|     Parameter     | Function                                                                                           | Default |
-| :---------------: | -------------------------------------------------------------------------------------------------- | ------- |
-|   -e `TFA_TYPE`   | Arlo TFA type. Currently only supports PUSH,EMAIL                                                  | PUSH    |
-|  -e `TFA_SOURCE`  | Arlo TFA type. Currently only supports push,imap                                                   | push    |
-| -e `TFA_RETRIES`  | Arlo TFA retries.                                                                                  | 10      |
-|  -e `TFA_DELAY`   | Arlo TFA Delay between each check                                                                  | 5       |
-|   -e `TFA_HOST`   | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |         |
-| -e `TFA_USERNAME` | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |         |
-| -e `TFA_PASSWORD` | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |         |
-|    -e `DEBUG`     | Set to 1 to enable debug logs                                                                      | 0       |
+|     Parameter      | Function                                                                                           | Default                                   |
+| :----------------: | -------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+|   -e `TFA_TYPE`    | Arlo TFA type. Currently only supports PUSH,EMAIL                                                  | PUSH                                      |
+|  -e `TFA_SOURCE`   | Arlo TFA type. Currently only supports push,imap                                                   | push                                      |
+|  -e `TFA_RETRIES`  | Arlo TFA retries.                                                                                  | 10                                        |
+|   -e `TFA_DELAY`   | Arlo TFA Delay between each check                                                                  | 5                                         |
+|   -e `TFA_HOST`    | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |                                           |
+| -e `TFA_USERNAME`  | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |                                           |
+| -e `TFA_PASSWORD`  | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |                                           |
+|     -e `DEBUG`     | Set to 1 to enable debug logs                                                                      | 0                                         |
+| -e `SAVE_MEDIA_TO` | Records save path (inside the container)                                                           | `/records/${Y}/${m}/${F}T${t}_${N}_${SN}` |
 
 #### Environment variables from files (Docker secrets)
 
@@ -73,49 +71,25 @@ As an example, instead of using -e ARLO_PASSWORD, you can set the following envi
 
 It will then set the environment variable ARLO_PASSWORD based on the contents of the /run/secrets/myarlopassword file.
 
-### docker-compose
+### Docker Compose
 
-Create a file called docker-compose.yml with the following content:
+See [compose.yml](compose.yml) for an example.
 
-```yaml
-version: "2.1"
-services:
-  arlo-downloader:
-    image: diaznet/arlo-downloader:latest
-    container_name: arlo-downloader:latest
-    environment:
-      - ARLO_USERNAME=<api_username>
-      - ARLO_PASSWORD=<password>
-    volumes:
-      - /path/to/videos:/records
-    restart: unless-stopped
-```
+Copy `.env.template` to `.env` and set variables.
 
-Start the docker containers with docker-compose up. To run the containers in the background add the -d flag:
+Interactive run:
 
 ```bash
-docker-compose up -d
+docker compose up --exit-code-from arlo-downloader
 ```
 
-### docker cli
-
-```bash
-docker run -d \
-  --name=arlo-downloader \
-  -e ARLO_USERNAME=<api_username> \
-  -e ARLO_PASSWORD=<password> \
-  -v /path/to/videos:/records \
-  --restart unless-stopped \
-  diaznet/arlo-downloader:latest
-```
-
-Once the container is started, it will first download into /path/to/videos all available recordings from the API.  
+Once the container is started, it will first download into `./records` (as mapped in `compose.yml`) all available recordings from the API.  
 If files already exist, they will not be replaced.  
 It will then run indefinitely and download any new recording as soon as it becomes available in the API.
 
 Default Naming scheme:
 
-    <year>/<month_number>/<year>-<month_number>-<day_number>T<hour>:<minute>:<seconds>_<device_name>_<device_serial_number>
+`<year>/<month_number>/<year>-<month_number>-<day_number>T<hour>:<minute>:<seconds>_<device_name>_<device_serial_number>`
 
 ## Manual Script run
 
@@ -155,12 +129,7 @@ This application comes without warranty.
 Please use with care.
 Any damage cannot be related back to the author.
 
-# Todo's
-
-- Ability to customize video filenames / filepath
-- ~~Ability to enable DEBUG with docker compose / run~~
-
 # Credits
 
 Author: Jeremy Diaz  
-This container uses [pyaarlo](https://github.com/twrecked/pyaarlo) 0.7.1.2 library.
+This container uses [pyaarlo](https://github.com/twrecked/pyaarlo) library.

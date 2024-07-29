@@ -1,6 +1,6 @@
 services:
   arlo-downloader:
-    image: "${IMAGE_VERSION:-arlo-downloader:latest}"
+    image: "${IMAGE_VERSION:ghcr.io/devopsx/arlo-downloader:main}"
     volumes:
       - ./records:/records
     environment:
