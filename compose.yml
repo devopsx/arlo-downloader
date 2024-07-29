@@ -11,3 +11,8 @@ services:
       TFA_HOST: "${TFA_HOST:-_invalid}"
       TFA_USERNAME: "${TFA_USERNAME:-_invalid}"
       TFA_PASSWORD: "${TFA_PASSWORD:-_invalid}"
+
+      # optional
+      DEBUG: ${DEBUG:-0}
+      UID: ${UID:-999}
+      GID: ${GID:-999}
