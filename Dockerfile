@@ -35,6 +35,7 @@ ENV TFA_HOST=_invalid
 ENV TFA_USERNAME=_invalid
 ENV TFA_PASSWORD=_invalid
 ENV SAVE_MEDIA_TO='/records/${Y}/${m}/${F}T${t}_${N}_${SN}'
+ENV DEBUG=0
 
 # Setting our entrypoint
 ENTRYPOINT ["/arlo-downloader/entrypoint.sh"]
