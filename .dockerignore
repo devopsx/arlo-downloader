@@ -1,5 +1,7 @@
 .env
+.env.template
 .github
+.gitignore
 .venv
 
 __pycache__/
@@ -10,4 +12,6 @@ README.MD
 SECURITY.md
 
 compose.yml
+pyproject.toml
 records/
+requirements-dev.txt
