@@ -15,7 +15,6 @@ In order to ensure the camera recordings are permanently backup'ed, we'll automa
 - Downloads all recordings available from Arlo cloud storage locally.
 - Handles TFA with EMAIL or PUSH methods (see below and [instructions](https://github.com/twrecked/pyaarlo#2fa-imap) for EMAIL type)
 
-
 # Requirements
 
 - Arlo cameras and My Arlo account, obviously.
@@ -43,27 +42,28 @@ This way your main account is not used by Arlo Downloader and access can be revo
 
 #### Mandatory
 
-| Parameter | Function |
-| :----: | --- |
+|     Parameter      | Function                                 |
+| :----------------: | ---------------------------------------- |
 | -e `ARLO_USERNAME` | The username required to access Arlo API |
-| -e `ARLO_PASSWORD` | The password for the username above |
-| -v `/records` | Storage for downloaded records |
+| -e `ARLO_PASSWORD` | The password for the username above      |
+|   -v `/records`    | Storage for downloaded records           |
 
 #### Optional
 
-| Parameter | Function | Default |
-| :----: | --- | --- |
-| -e `TFA_TYPE` | Arlo TFA type. Currently only supports PUSH,EMAIL | PUSH |
-| -e `TFA_SOURCE` | Arlo TFA type. Currently only supports push,imap | push |
-| -e `TFA_RETRIES` | Arlo TFA retries. | 10 |
-| -e `TFA_DELAY` | Arlo TFA Delay between each check | 5 |
-| -e `TFA_HOST` | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) | |
-| -e `TFA_USERNAME` | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) | |
-| -e `TFA_PASSWORD` | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) | |
-| -e `DEBUG` | Set to 1 to enable debug logs | 0 |
+|     Parameter     | Function                                                                                           | Default |
+| :---------------: | -------------------------------------------------------------------------------------------------- | ------- |
+|   -e `TFA_TYPE`   | Arlo TFA type. Currently only supports PUSH,EMAIL                                                  | PUSH    |
+|  -e `TFA_SOURCE`  | Arlo TFA type. Currently only supports push,imap                                                   | push    |
+| -e `TFA_RETRIES`  | Arlo TFA retries.                                                                                  | 10      |
+|  -e `TFA_DELAY`   | Arlo TFA Delay between each check                                                                  | 5       |
+|   -e `TFA_HOST`   | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |         |
+| -e `TFA_USERNAME` | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |         |
+| -e `TFA_PASSWORD` | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |         |
+|    -e `DEBUG`     | Set to 1 to enable debug logs                                                                      | 0       |
 
 #### Environment variables from files (Docker secrets)
-You can set any environment variable from a file by using a special prepend FILE__.
+
+You can set any environment variable from a file by using a special prepend FILE\_\_.
 
 As an example, instead of using -e ARLO_PASSWORD, you can set the following environment variable:
 
@@ -73,10 +73,9 @@ As an example, instead of using -e ARLO_PASSWORD, you can set the following envi
 
 It will then set the environment variable ARLO_PASSWORD based on the contents of the /run/secrets/myarlopassword file.
 
-
 ### docker-compose
 
-Create a file called docker-compose.yml with the following content: 
+Create a file called docker-compose.yml with the following content:
 
 ```yaml
 version: "2.1"
@@ -157,9 +156,11 @@ Please use with care.
 Any damage cannot be related back to the author.
 
 # Todo's
+
 - Ability to customize video filenames / filepath
 - ~~Ability to enable DEBUG with docker compose / run~~
 
 # Credits
+
 Author: Jeremy Diaz  
 This container uses [pyaarlo](https://github.com/twrecked/pyaarlo) 0.7.1.2 library.
