@@ -16,8 +16,10 @@ def parse_arguments():
     parser.add_argument(
         "-d",
         "--debug",
-        action="store_true",
-        help="Enable Debug messages. Can also be set with environment variable DEBUG=1",
+        choices=["0", "1", "2", "3"],
+        help="Enable debug messages. Can also be set with environment variable DEBUG=1-3",
+        action="store",
+        default="0",
     )
     parser.add_argument(
         "-m",
@@ -85,7 +87,7 @@ def set_logger(dbg):
     _LOGGER = logging.getLogger(__name__)
 
 
-def Init():
+def Init(debug: int):
 
     # code to trap when attributes change
     def attribute_changed(device, attr, value):
@@ -102,6 +104,9 @@ def Init():
     # log in
     # add `verbose_debug=True` to enable even more debugging
     # add `dump=True` to enable event stream packet dumps
+    verbose_debug = debug > 1
+    dump = debug > 2
+
     arlo = pyaarlo.PyArlo(
         username=USERNAME,
         password=PASSWORD,
@@ -114,9 +119,9 @@ def Init():
         tfa_password=Config.config("tfa_password"),
         synchronous_mode=True,
         save_state=False,
-        dump=False,
+        dump=dump,
         storage_dir="aarlo",
-        verbose_debug=True,
+        verbose_debug=verbose_debug,
         backend="sse",
         save_media_to=PATH,
     )
@@ -134,6 +139,15 @@ def Init():
     for camera in arlo.cameras:
         logging.info("camera: name={},device_id={},state={}".format(camera.name, camera.device_id, camera.state))
         camera.add_attr_callback("*", attribute_changed)
+
+
+def get_debug_level(arguments) -> int:
+    """
+    Check debug level in environment and argument.
+    """
+    arg_debug_level = arguments.debug if hasattr(arguments, "debug") else 0
+    env_debug_level = int(os.environ.get("DEBUG", 0))
+    return max(int(arg_debug_level), env_debug_level)
 
 
 def main(arguments):
@@ -155,14 +169,13 @@ def main(arguments):
         Config.set("tfa_username", arguments.tfa_username)
     if arguments.tfa_password:
         Config.set("tfa_password", arguments.tfa_password)
-    if arguments.debug:
-        set_logger(True)
-    elif os.environ.get("DEBUG") and os.environ.get("DEBUG") == "1":
+    debug = get_debug_level(arguments)
+    if debug > 0:
         set_logger(True)
     else:
         set_logger(False)
     try:
-        Init()
+        Init(debug)
         loop.run_forever()
     except KeyboardInterrupt:
         sys.exit(0)

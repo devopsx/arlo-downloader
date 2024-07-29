@@ -56,7 +56,7 @@ This way your main account is not used by Arlo Downloader and access can be revo
 |   -e `TFA_HOST`    | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |                                           |
 | -e `TFA_USERNAME`  | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |                                           |
 | -e `TFA_PASSWORD`  | TFA_TYPE=EMAIL + TFA_SOURCE=imap only [Instructions](https://github.com/twrecked/pyaarlo#2fa-imap) |                                           |
-|     -e `DEBUG`     | Set to 1 to enable debug logs                                                                      | 0                                         |
+|     -e `DEBUG`     | Set to 1-3 to enable debug logs                                                                    | 0                                         |
 | -e `SAVE_MEDIA_TO` | Records save path (inside the container)                                                           | `/records/${Y}/${m}/${F}T${t}_${N}_${SN}` |
 
 #### Environment variables from files (Docker secrets)
