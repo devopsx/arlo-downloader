@@ -1,3 +1,6 @@
 cloudscraper>=1.2.71
 # TODO: switch to release when better errors is merged
 pyaarlo @ git+https://github.com/twrecked/pyaarlo@bb84163fc576c3756bf3a535b8cfe5a436bee8a1
+
+# optional
+sentry-sdk>=2.12.0
