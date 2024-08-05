@@ -11,9 +11,10 @@ services:
       TFA_HOST: "${TFA_HOST:-_invalid}"
       TFA_USERNAME: "${TFA_USERNAME:-_invalid}"
       TFA_PASSWORD: "${TFA_PASSWORD:-_invalid}"
+      SAVE_MEDIA_TO: "${SAVE_MEDIA_TO}"
 
       # optional
-      DEBUG: ${DEBUG:-0}
-      UID: ${UID:-999}
-      GID: ${GID:-999}
-      SENTRY_DSN: ${SENTRY_DSN:-_invalid}
+      DEBUG: "${DEBUG:-0}"
+      UID: "${UID:-999}"
+      GID: "${GID:-999}"
+      SENTRY_DSN: "${SENTRY_DSN:-_invalid}"
