@@ -119,7 +119,7 @@ def Init(debug: int):
 
     # Print configuration in DEBUG
     for confItem in Config.dump_config().items():
-        # Only pring password on highest debug level
+        # Only print password on highest debug level
         if (confItem[0] == "tfa_password") and debug < 3:
             logging.debug(("tfa_password", "***"))
         else:
