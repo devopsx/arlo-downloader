@@ -1,6 +1,5 @@
 cloudscraper>=1.2.71
-# TODO: switch to release when better errors is merged
-pyaarlo @ git+https://github.com/devopsx/pyaarlo@68c42e5d4bfdf167dbbed6820e9d27521c884e5b
+pyaarlo>=0.8.0.11
 
 # optional
 sentry-sdk>=2.12.0
