@@ -8,9 +8,7 @@ usermod -u $UID arlo-downloader
 groupmod -g $GID arlo-downloader
 
 # Chown, just in case
-if [[ "$CHOWN" == "true" ]]; then
-    chown -R "$UID:$GID" /records /arlo-downloader/aarlo
-fi
+chown "$UID:$GID" /records /arlo-downloader/aarlo
 
 if [[ "$DEBUG" != "3" ]]; then
     set +x

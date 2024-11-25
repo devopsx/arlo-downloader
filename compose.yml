@@ -18,5 +18,3 @@ services:
       UID: "${UID:-999}"
       GID: "${GID:-999}"
       SENTRY_DSN: "${SENTRY_DSN:-_invalid}"
-      # Chown files to make sure they are writable
-      CHOWN: "${CHOWN:-true}"
