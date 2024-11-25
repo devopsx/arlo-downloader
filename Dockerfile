@@ -9,6 +9,7 @@ RUN apt-get update \
 
 ENV UID=999
 ENV GID=999
+ENV CHOWN=true
 
 # ./aarlo is session cache dir
 RUN mkdir -p /arlo-downloader/aarlo /records \

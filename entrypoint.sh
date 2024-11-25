@@ -7,7 +7,10 @@ usermod -u $UID arlo-downloader
 # shellcheck disable=2086  # passed from Dockerfile or compose
 groupmod -g $GID arlo-downloader
 
-chown -R "$UID:$GID" /records /arlo-downloader/aarlo
+# Chown, just in case
+if [[ "$CHOWN" == "true" ]]; then
+    chown -R "$UID:$GID" /records /arlo-downloader/aarlo
+fi
 
 if [[ "$DEBUG" != "3" ]]; then
     set +x
