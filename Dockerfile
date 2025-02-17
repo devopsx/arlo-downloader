@@ -1,4 +1,4 @@
-FROM python:3.9-slim
+FROM python:3.10-slim
 
 # TODO: drop after switching to a proper release version of pyaarlo
 # Needed for installing better-error branch
