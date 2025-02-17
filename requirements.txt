@@ -1,6 +1,5 @@
 cloudscraper>=1.2.71
-# TODO: switch to release when slugify fix is released
-pyaarlo @ git+https://github.com/twrecked/pyaarlo@46443df3a0e64d2f6b8d3840470f17821fb56396
+pyaarlo=0.8.0.17
 
 # optional
 sentry-sdk>=2.12.0
