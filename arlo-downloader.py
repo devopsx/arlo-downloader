@@ -140,12 +140,12 @@ def Init(debug: int):
         tfa_host=Config.config("tfa_host"),
         tfa_username=Config.config("tfa_username"),
         tfa_password=Config.config("tfa_password"),
-        synchronous_mode=True,
-        save_state=False,
+        synchronous_mode=False,
+        mode_api='v2',
+        save_state=True,
         dump=dump,
         storage_dir="aarlo",
         verbose_debug=verbose_debug,
-        backend="sse",
         save_media_to=PATH,
     )
     if not arlo.is_connected:
