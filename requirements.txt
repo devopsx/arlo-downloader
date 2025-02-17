@@ -1,5 +1,5 @@
 cloudscraper>=1.2.71
-pyaarlo=0.8.0.17
+pyaarlo==0.8.0.17
 
 # optional
 sentry-sdk>=2.12.0
