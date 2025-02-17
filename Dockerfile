@@ -1,12 +1,5 @@
 FROM python:3.10-slim
 
-# TODO: drop after switching to a proper release version of pyaarlo
-# Needed for installing better-error branch
-RUN apt-get update \
-    && apt-get install -y git \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists
-
 ENV UID=999
 ENV GID=999
 
