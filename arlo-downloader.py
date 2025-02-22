@@ -141,7 +141,6 @@ def Init(debug: int):
         tfa_username=Config.config("tfa_username"),
         tfa_password=Config.config("tfa_password"),
         synchronous_mode=False,
-        mode_api='v2',
         save_state=True,
         dump=dump,
         storage_dir="aarlo",
