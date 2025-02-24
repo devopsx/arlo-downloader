@@ -140,6 +140,7 @@ def Init(debug: int):
         tfa_host=Config.config("tfa_host"),
         tfa_username=Config.config("tfa_username"),
         tfa_password=Config.config("tfa_password"),
+        reconnect_every=110,
         synchronous_mode=False,
         save_state=True,
         dump=dump,
